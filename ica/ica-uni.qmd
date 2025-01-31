@@ -3,3 +3,168 @@ title: "Univariate Viz"
 ---
 
 Use this file for practice with the **univariate viz** in-class activity.  Refer to the class website for details.
+
+```{r}
+# Import data
+hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+```
+
+```{r}
+head(hikes)
+```
+a. easiest to hardest progression
+b. low to high elevation
+
+```{r}
+# Load the package
+library(tidyverse)
+```
+```{r}
+ggplot(hikes, aes(x = rating))
+```
+```{r}
+# + geom_bar(), adds bar graph about each rating 
+ggplot(hikes, aes(x = rating)) +
+  geom_bar()
+```
+
+```{r}
+# adds a lab about the y axis, labels the y as number of hikes
+ggplot(hikes, aes(x = rating)) +
+  geom_bar() +
+  labs(x = "Rating", y = "Number of hikes")
+```
+```{r}
+# has the bar filled as "blue", changes bars to blue color
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(fill = "blue") +
+  labs(x = "Rating", y = "Number of hikes")
+```
+```{r}
+# has the color and fill differently in geom_bar, outlines bar orange
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(color = "orange", fill = "blue") +
+  labs(x = "Rating", y = "Number of hikes")
+```
+```{r}
+# adds a theme_minimal(), removes the background shading
+ggplot(hikes, aes(x = rating)) +
+  geom_bar(color = "orange", fill = "blue")  +
+  labs(x = "Rating", y = "Number of hikes") +
+  theme_minimal()
+```
+- What’s the purpose of the +? When do we use it? Adding more visual features to the graph, when we want to make data look a certain way
+- We added the bars using geom_bar()? Why “geom”? It's a layer, a geometric element
+- What does labs() stand for? Each axis
+- What’s the difference between color and fill? Color is outline, fill is bar itself
+
+- observed categories: What categories did we observe? number of hikes, ratings
+- variability between categories: Are observations evenly spread out among the categories, or are some categories more common than others? moderates hikes are the most common
+
+- Is there anything you don’t like about this barplot? For example: check out the x-axis again. it doesn't go easy > medium > hard
+
+```{r}
+ggplot(hikes, aes(x = elevation)) +
+  geom_bar()
+```
+- Explain why this might not be an effective visualization for this and other quantitative variables. (What questions does / doesn’t it help answer?) It doesn't make a nice chart to answer a typical elevation, also there are too many data points for a bar graph so it doesn't look as nice
+
+- How many hikes have an elevation between 4500 and 4700 feet? around 6
+- How many total hikes have an elevation of at least 5100 feet? around 4
+
+- typical outcome: Where’s the center of the data points? What’s typical? around 4000 feet
+- variability & range: How spread out are the outcomes? What are the max and min outcomes? pretty spread out, lowest is around 3800 and highest is 5500
+- shape: How are values distributed along the observed range? Is the distribution symmetric, right-skewed, left-skewed, bi-modal, or uniform (flat)? more left-skewed
+- outliers: Are there any outliers, i.e. outcomes that are unusually large/small? not really
+
+- Addressing each of the features in the above list, summarize below what you learned from the histogram, in context. Most hikes have an elevation around 4000ft or a bit more, there are less hikes the higher elevation you get around 4500
+
+```{r}
+# adds a geom_histogram(), adds larger bars on each data point
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram()
+```
+```{r}
+# adds a color to the histogram, outlines in white
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white") 
+```
+```{r}
+# adds a fill, makes the bars blue with white outline
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white", fill = "blue") 
+```
+```{r}
+# adds a lab(), labels x and y axis
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white") +
+  labs(x = "Elevation (feet)", y = "Number of hikes")
+```
+```{r}
+# adds binwidth, changes the range of the data, makes each bar into multiple hikes
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white", binwidth = 1000) +
+  labs(x = "Elevation (feet)", y = "Number of hikes")
+```
+```{r}
+# chnages binwidth to 5, changes y axis to smaller intervals
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white", binwidth = 5) +
+  labs(x = "Elevation (feet)", y = "Number of hikes")
+```
+```{r}
+# changes binwidth to 200, again changes y-axis interval
+ggplot(hikes, aes(x = elevation)) +
+  geom_histogram(color = "white", binwidth = 200) +
+  labs(x = "Elevation (feet)", y = "Number of hikes")
+```
+- What function added the histogram layer / geometry? geom_histogram()
+- What’s the difference between color and fill? color is an outline, fill is the actual color of the bar
+- Why does adding color = "white" improve the visualization? it makes the divides between the bars easier to see
+- What did binwidth do? changes the y-axis interval
+- Why does the histogram become ineffective if the binwidth is too big (e.g. 1000 feet)? there's too many data points clumped in the bar
+- Why does the histogram become ineffective if the binwidth is too small (e.g. 5 feet)? it makes too many lines and becomes distractig
+
+```{r}
+ggplot(hikes, aes(x = elevation)) +
+  geom_density() + 
+  geom_density(fill = "orange")
+
+```
+INTUITION CHECK: Before tweaking the code and thinking back to geom_bar() and geom_histogram(), how do you anticipate the following code will change the plot?
+
+geom_density(color = "blue") make the line outlined blue
+geom_density(fill = "orange") make the line blue
+TRY IT! Test out those lines in the chunk below. Was your intuition correct?
+
+Examine the density plot. How does it compare to the histogram? What does it tell you about the typical elevation, variability / range in elevations, and shape of the distribution of elevations within this range? clearly says where it peaks, and this distribution/shape of data, seems more effective
+
+
+- The histogram and density plot both allow us to visualize the behavior of a quantitative variable: typical outcome, variability / range, shape, and outliers. What are the pros/cons of each? What do you like/not like about each? bar graph makes it easy to have better visuals and colors, and can show clear outliers, but the density plot makes for easier data observations about averages 
+
+Though not necessary to the code working, it’s common, good practice to indent or tab the lines of code after the first line (counterexample below). Why?
+makes it easier to see each line 
+
+Though not necessary to the code working, it’s common, good practice to put a line break after each + (counterexample below). Why?
+makes it easier to see each line!
+
+```{r}
+# Data on students in this class
+survey <- read.csv("https://hash-mac.github.io/stat112site-s25/data/survey.csv")
+
+# World Cup data
+world_cup <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-11-29/worldcups.csv")
+```
+```{r}
+head(survey)
+```
+
+```{r}
+ggplot(survey, aes(x = minutes_to_campus)) +
+  geom_density() + 
+  geom_density(color = "purple") +
+labs(x = "Minutes to Campus", y = "Number of students")
+```
+
+
+
