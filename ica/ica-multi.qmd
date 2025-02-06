@@ -3,3 +3,102 @@ title: "Mulivariate Viz"
 ---
 
 Use this file for practice with the **mulivariate viz** in-class activity.  Refer to the class website for details.
+
+```{r}
+# Import and check out data
+education <- read.csv("https://mac-stat.github.io/data/sat.csv")
+head(education)
+library(tidyverse)
+```
+```{r}
+ggplot(education, aes(x=sat)) +
+    geom_histogram(binwidth = 5)
+
+```
+- Summarize your observations from the plot. Comment on the basics: range, typical outcomes, shape. (Any theories about what might explain this non-normal shape?) There seems to be no real average shape or concentration, and there's quite a large range as well. 
+
+```{r}
+# Construct a plot of sat vs expend
+# Include a "best fit linear regression model" (HINT: method = "lm")
+ggplot(education, aes(y = sat, x = expend)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+```{r}
+# Construct a plot of sat vs salary
+# Include a "best fit linear regression model" (HINT: method = "lm")
+ggplot(education, aes(y = sat, x = salary)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+```
+
+- What are the relationship trends between SAT scores and spending? Is there anything that surprises you? There's almost a negative correlation, which really surprises me
+
+```{r}
+# Construct one visualization of the relationship of sat with salary and expend. HINT: Start with just 2 variables and tweak that code to add the third variable. Try out a few things!
+ggplot(education, aes(y = sat, x = salary, color = expend)) +
+  geom_point() 
+```
+```{r}
+ggplot(education, aes(y = sat, x = salary, color = cut(expend, 3))) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, method = "lm")
+```
+
+- Describe the trivariate relationship between sat, salary, and expend. Low expend usually means low salary, and vice cersa, but a high salary and expend usually means a lower sat score, otherwise the sat scores are pretty scattered
+
+```{r}
+#Build a univariate viz of fracCat to better understand how many states fall into each category.
+ggplot(education, aes(x=fracCat)) +
+    geom_bar() 
+```
+```{r}
+#Build 2 bivariate visualizations that demonstrate the relationship between sat and fracCat. What story does your graphic tell and why does this make contextual sense? This graph says that the more people take the sat in a state, usually their scores are worse than if a lot of students in that state take the sat. if a lower percentage take it, then maybe expend and resources are more focused on those few students?
+ggplot(education, aes(x = sat, fill = fracCat)) +
+  geom_density(alpha = 0.5) 
+```
+```{r}
+ggplot(education, aes(x = fracCat, y = sat)) +
+  geom_boxplot()
+```
+
+```{r}
+#Make a trivariate visualization that demonstrates the relationship of sat with expend AND fracCat. Highlight the differences in fracCat groups through color AND unique trend lines. What story does your graphic tell?
+# Does it still seem that SAT scores decrease as spending increases?
+ggplot(education, aes(y = sat, x = expend, color = fracCat)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+
+```
+
+- Putting all of this together, explain this example of Simpson’s Paradox. That is, why did it appear that SAT scores decrease as spending increases even though the opposite is true? the total spending doesn't matter as much as the per student spending, if a small concentration of students is taking the sat, you can still spend less overall and then have per-student spending be more than spending more money for a lot more students. 
+
+```{r}
+# Remove the "State" column and use it to label the rows
+# Then scale the variables
+plot_data <- education |> 
+  column_to_rownames("State") |> 
+  data.matrix() |> 
+  scale()
+
+# Load the gplots package needed for heatmaps
+library(gplots)
+
+# Construct heatmap 1
+heatmap.2(plot_data,
+  dendrogram = "none",
+  Rowv = NA, 
+  scale = "column",
+  keysize = 0.7, 
+  density.info = "none",
+  col = hcl.colors(256), 
+  margins = c(10, 20),
+  colsep = c(1:7), rowsep = (1:50), sepwidth = c(0.05, 0.05),
+  sepcolor = "white", trace = "none"
+)
+```
+
+
+
+

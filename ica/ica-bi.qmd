@@ -150,7 +150,7 @@ ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
 ```
 We’ve now learned 3 (of many) ways to visualize the relationship between a quantitative and categorical variable: side-by-side violins, boxplots, and density plots.
 
-- Which do you like best? Violins, it makes the data so easy to observe and comment on
+- Which do you like best? Box plots, it makes the data so easy to observe and comment on
 - What is one pro of density plots relative to boxplots? It makes data easy to see in comparison to one another
 - What is one con of density plots relative to boxplots? It only works if both values are quantitative
 
