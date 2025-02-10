@@ -116,12 +116,26 @@ starbucks_cma <- starbucks |>
   filter(Country %in% c('CA', 'MX', 'US'))
 ```
 
-
 ```{r}
-cma_boundaries <- ne_states(
-  country = c("canada", "mexico", "united states of america"),
-  returnclass = "sf")
+# Just the boundaries
+ggplot(cma_boundaries) + 
+  geom_sf()
 ```
 
+```{r}
+# Add the points
+# And zoom in
+ggplot(cma_boundaries) + 
+  geom_sf() + 
+  geom_point(
+    data = starbucks_cma,
+    aes(x = Longitude, y = Latitude),
+    alpha = 0.3,
+    size = 0.2,
+    color = "darkgreen"
+  ) +
+  coord_sf(xlim = c(-179.14, -50)) +
+  theme_map()
+```
 
 
