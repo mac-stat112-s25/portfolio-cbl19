@@ -103,7 +103,7 @@ ggplot(hikes, aes(x = elevation)) +
 ```{r}
 # adds binwidth, changes the range of the data, makes each bar into multiple hikes
 ggplot(hikes, aes(x = elevation)) +
-  geom_histogram(color = "white", binwidth = 1000) +
+  geom_histogram(color = "white", fill = "pink", binwidth = 200) +
   labs(x = "Elevation (feet)", y = "Number of hikes")
 ```
 ```{r}
