@@ -257,4 +257,56 @@ elections_small |>
             repub_total = sum(repub_votes_20)) |> 
   filter(dem_total > repub_total)
 ```
+```{r}
+world_cup <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-11-29/worldcups.csv")
+head(world_cup)
+```
+```{r}
+# In what years did Brazil win the World Cup?
+world_cup |> 
+filter(winner == "Brazil")
+```
+```{r}
+# What were the 6 World Cups with the highest attendance?
+world_cup |> 
+select(year, host, attendance) |>
+arrange(desc(attendance)) 
+```
+```{r}
+# Construct a univariate plot of goals_scored (no wrangling necessary)
+# This provides a visual summary of how the number of goals_scored varies from World Cup to World Cup
+ggplot(world_cup, aes(x = goals_scored)) +
+  geom_histogram(binwidth = 15) +
+  labs(x = "Goals Scored", y = "Number of World Cups")
+```
+```{r}
+# Let's follow up the plot with some more precise numerical summaries
+# Calculate the min, median, and max number of goals_scored across all World Cups
+world_cup |> 
+  summarize(median(goals_scored))
+
+world_cup |> 
+  summarize(min(goals_scored))
+
+world_cup |> 
+  summarize(max(goals_scored))
+# NOTE: Visually compare these numerical summaries to what you observed in the plot
+# they're a lot more specific and make better observations of outliers
+```
+```{r}
+# Construct a bivariate plot of how the number of goals_scored in the World Cup has changed over the years
+# No wrangling necessary
+ggplot(world_cup, aes(y = goals_scored, x = year)) +
+  geom_point() +
+  labs(x= "Year", y = "Goals Scored")
+```
+```{r}
+# Construct a bivariate plot of how the typical number of goals per game has changed over the years
+per_game <- world_cup |> 
+   mutate(goals_per_game = goals_scored/games)
+
+ggplot(per_game, aes(y = goals_per_game, x = year)) +
+  geom_point() +
+  labs(x= "Year", y = "Goals Scored Per Game")
+```
 
