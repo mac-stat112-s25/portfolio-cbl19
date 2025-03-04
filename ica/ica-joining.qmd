@@ -1,0 +1,74 @@
+---
+title: "ica-joining"
+format: html
+---
+
+```{r}
+students_1 <- data.frame(
+  student = c("A", "B", "C"),
+  class = c("STAT 101", "GEOL 101", "ANTH 101")
+)
+
+# Check it out
+students_1
+```
+```{r}
+enrollments_1 <- data.frame(
+  class = c("STAT 101", "ART 101", "GEOL 101"),
+  enrollment = c(18, 17, 24)
+)
+
+# Check it out
+enrollments_1
+```
+First, consider the following:
+
+What variable or key do these datasets have in common? Thus by what information can we match the observations in these datasets? class
+
+Relative to this key, what info does students_1 have that enrollments_1 doesn’t? students in the class
+
+Relative to this key, what info does enrollments_1 have that students_1 doesn’t? enrollment in that class
+
+First, try the left_join() function:
+
+```{r}
+library(tidyverse)
+enrollments_1 |> 
+  left_join(students_1)
+```
+
+What did this do? What are the roles of students_1 (the left table) and enrollments_1 (the right table)? connected by the left side
+
+What, if anything, would change if we reversed the order of the data tables? Think about it, then try. students and enrollment would switch
+
+```{r}
+enrollments_1 |> 
+  inner_join(students_1)
+```
+What did this do? What are the roles of students_1 (the left table) and enrollments_1 (the right table)? combined the two sets, removed student c
+
+What, if anything, would change if we reversed the order of the data tables? Think about it, then try.
+
+```{r}
+enrollments_1 |> 
+  full_join(students_1)
+```
+```{r}
+enrollments_1 |> 
+  semi_join(students_1)
+```
+What did this do? What info would it give us? removed enrollments and just kept students and class
+
+How does semi_join() differ from inner_join()? inner keeps enrollment
+
+What, if anything, would change if we reversed the order of the data tables? Think about it, then try. only keep enrollment and class
+
+```{r}
+enrollments_1 |> 
+  anti_join(students_1)
+```
+What did this do? What info would it give us? the observation with no match on the right side
+
+What, if anything, would change if we reversed the order of the data tables? Think about it, then try. give art 101 
+
+
