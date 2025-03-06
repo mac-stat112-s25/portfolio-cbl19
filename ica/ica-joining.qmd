@@ -71,4 +71,217 @@ What did this do? What info would it give us? the observation with no match on t
 
 What, if anything, would change if we reversed the order of the data tables? Think about it, then try. give art 101 
 
+```{r}
+students_2 <- data.frame(
+  student = c("D", "E", "F"),
+  class = c("COMP 101", "BIOL 101", "POLI 101")
+)
+
+# Check it out
+students_2
+```
+```{r}
+enrollments_2 <- data.frame(
+  course = c("ART 101", "BIOL 101", "COMP 101"),
+  enrollment = c(18, 20, 19)
+)
+
+# Check it out
+enrollments_2
+```
+```{r}
+# eval = FALSE: don't evaluate this chunk when knitting. it produces an error.
+students_2 |> 
+  left_join(enrollments_2)
+```
+```{r}
+# Add student grades in each course
+students_3 <- data.frame(
+  student = c("Y", "Y", "Z", "Z"),
+  class = c("COMP 101", "BIOL 101", "POLI 101", "COMP 101"),
+  grade = c("B", "S", "C", "A")
+)
+
+# Check it out
+students_3
+```
+```{r}
+# Add average grades in each course
+enrollments_3 <- data.frame(
+  class = c("ART 101", "BIOL 101","COMP 101"),
+  grade = c("B", "A", "A-"),
+  enrollment = c(20, 18, 19)
+)
+
+# Check it out
+enrollments_3
+```
+```{r}
+students_3 |> 
+  left_join(enrollments_3)
+```
+```{r}
+students_3 |> 
+  left_join(enrollments_3, by = c("class" = "class"))
+```
+```{r}
+# People who have voted
+voters <- data.frame(
+  id = c("A", "D", "E", "F", "G"),
+  times_voted = c(2, 4, 17, 6, 20)
+)
+
+voters
+```
+```{r}
+# Contact info for voting age adults
+contact <- data.frame(
+  name = c("A", "B", "C", "D"),
+  address = c("summit", "grand", "snelling", "fairview"),
+  age = c(24, 89, 43, 38)
+)
+
+contact
+```
+```{r}
+# 1. We want contact info for people who HAVEN'T voted
+contact |>
+    anti_join(voters, join_by(name == id))
+
+# 2. We want contact info for people who HAVE voted
+contact |>
+    inner_join(voters, join_by(name == id))
+
+# 3. We want any data available on each person
+contact |>
+    full_join(voters, join_by(name == id))
+
+# 4. When possible, we want to add contact info to the voting roster
+voters |> 
+  left_join(contact, join_by(id == name))
+```
+```{r}
+grades <- read.csv("https://mac-stat.github.io/data/grades.csv") |> 
+  distinct(sid, sessionID, .keep_all = TRUE)
+courses <- read.csv("https://mac-stat.github.io/data/courses.csv")
+```
+
+
+
+```{r}
+# How many observations (rows) and variables (columns) are there in the grades data?
+dim(grades)
+
+# How many observations (rows) and variables (columns) are there in the courses data?
+dim(courses)
+```
+```{r}
+courses |> 
+  count(sessionID) |> 
+  filter(n > 1)
+```
+```{r}
+courses |> 
+  filter(sessionID == "session2047")
+```
+```{r}
+ courses_combined <- courses |> 
+   group_by(sessionID) |> 
+   summarize(enroll = sum(enroll))
+
+# Check that this has 1695 rows and 2 columns
+dim(courses_combined)
+```
+Let’s first examine the question of class size from the administration’s viewpoint. To this end, calculate the median class size across all class sections. (The median is the middle or 50th percentile. Unlike the mean, it’s not skewed by outliers.) THINK FIRST:
+
+Which of the 2 datasets do you need to answer this question? One? Both? 
+If you need course information, use courses_combined not courses.
+Do you have to do any joining? If so, which dataset will go on the left, i.e. which dataset includes your primary observations of interest? Which join function will you need?
+```{r}
+courses_combined |>
+  summarize(median(enroll))
+```
+But how big are classes from the student perspective? To this end, calculate the median class size for each individual student. Once you have the correct output, store it as student_class_size. THINK FIRST:
+
+Which of the 2 datasets do you need to answer this question? One? Both?
+If you need course information, use courses_combined not courses.
+Do you have to do any joining? If so, which dataset will go on the left, i.e. which dataset includes your primary observations of interest? Which join function will you need?
+```{r}
+ student_class_size <- grades |> 
+  left_join(courses_combined) |> 
+  group_by(sid) |> 
+  summarize(median_class = median(enroll))
+```
+```{r}
+ ggplot(student_class_size, aes(x = median_class)) + 
+   geom_histogram()
+```
+most students have a median class size of about 20 people.
+
+```{r}
+grades |>
+  filter(sessionID == "session1986")
+```
+```{r}
+dept_E <- courses |> 
+  filter(dept == "E")
+```
+
+```{r}
+grades |> 
+  semi_join(dept_E)
+```
+```{r}
+gpa_conversion <- tibble(
+  grade = c("A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "NC", "AU", "S"), 
+  gp = c(4.3, 4, 3.7, 3.3, 3, 2.7, 2.3, 2, 1.7, 1.3, 1, 0.7, 0, NA, NA)
+)
+
+gpa_conversion
+```
+Part a
+How many total student enrollments are there in each department? Order from high to low.
+```{r}
+courses |>
+  group_by(dept) |>
+  summarize(total_dept = sum(enroll)) |>
+  arrange(desc(total_dept))
+```
+
+Part b
+What’s the grade-point average (GPA) for each student?
+```{r}
+grades |>
+  left_join(gpa_conversion) |>
+  group_by(sid) |>
+  summarize(GPA = median(gp))
+```
+
+Part c
+What’s the median GPA across all students?
+```{r}
+grades |>
+  left_join(gpa_conversion) |>
+  summarize(GPA = median(gp, na.rm = TRUE))
+```
+
+Part d
+What fraction of grades are below B+?
+```{r}
+grades |>
+  left_join(gpa_conversion) |>
+  mutate(below_b_plus = (gp < 3.3)) |>
+  summarize(fraction = mean(below_b_plus, na.rm = TRUE))
+```
+
+Part e
+What’s the grade-point average for each instructor? Order from low to high.
+```{r}
+grades |> 
+  left_join(gpa_conversion) |> 
+  left_join(courses) |> 
+  group_by(iid) |> 
+  summarize(gpa = mean(gp, na.rm = TRUE)) |> 
+  arrange(gpa)
+```
 
