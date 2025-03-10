@@ -3,3 +3,26 @@ title: "Trivariate Viz"
 ---
 
 Use this file to generate a professional looking **trivariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+#Births per year 1970-1985 per month as trivariable relationship
+data("Birthdays")
+daily_births <- Birthdays |> 
+  group_by(date) |> 
+  summarize(births = sum(births)) |> 
+  mutate(year = year(date), 
+         month = month(date, label = TRUE),
+         day_of_month = mday(date),
+         day_of_week = wday(date, label = TRUE))
+
+ggplot(daily_births, aes(y= births, color = month, x = year)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  labs(x = "Year", y = "Births", color = "Month")
+
+```
