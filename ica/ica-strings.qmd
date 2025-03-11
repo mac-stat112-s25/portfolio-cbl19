@@ -1,0 +1,103 @@
+---
+title: "ica-strings"
+format: html
+---
+
+```{r}
+library(tidyverse)
+
+classes <- data.frame(
+  sem        = c("SP2023", "FA2023", "SP2024"),
+  area       = c("History", "Math", "Anthro"),
+  enroll     = c("30 - people", "20 - people", "25 - people"),
+  instructor = c("Ernesto Capello", "Lori Ziegelmeier", "Arjun Guneratne")
+)
+
+classes
+```
+```{r}
+# Define a new variable "num" that adds up the number of characters in the area label
+classes |>
+  mutate(num = str_length(area))
+
+# Change the areas to "history", "math", "anthro" instead of "History", "Math", "Anthro"
+classes |> 
+  mutate(area = str_to_lower(area))
+
+# Create a variable that id's which courses were taught in spring
+classes |> 
+  mutate(spring = str_detect(sem, "SP"))
+
+# Change the semester labels to "fall2023", "spring2024", "spring2023"
+classes |> 
+  mutate(sem = str_replace(sem, "SP", "spring")) |> 
+  mutate(sem = str_replace(sem, "FA", "fall"))
+
+# In the enroll variable, change all e's to 3's (just because?)
+classes |> 
+  mutate(enroll = str_replace_all(enroll, "e", "3"))
+
+# Use sem to create 2 new variables, one with only the semester (SP/FA) and 1 with the year
+classes |> 
+  mutate(semester = str_sub(sem, 1, 2),
+         year = str_sub(sem, 3, 6))
+```
+```{r}
+# How can we do this after mutating?
+classes |> 
+  mutate(spring = str_detect(sem, "SP")) |>
+  filter(spring == TRUE)
+```
+```{r}
+# We don't have to mutate first!
+classes |> 
+  filter(str_detect(sem, "SP"))
+```
+```{r}
+# Yet another way
+classes |> 
+  filter(!str_detect(sem, "FA"))
+```
+```{r}
+classes |>
+  str_sub(classes, )
+#you'd have to pivot first, and instructors do not have the same names
+```
+
+```{r}
+classes |> 
+  separate(instructor, c("first", "last"), sep = " ")
+```
+
+```{r}
+# Sometimes the function can "intuit" how we want to separate the variable
+classes |> 
+  separate(instructor, c("first", "last"))
+```
+
+```{r}
+ classes |> 
+   separate(enroll, c("students", "people"), sep = "-")
+```
+We separated sem into semester and year above using str_sub(). Why would this be hard using separate()? starts and ends aren't easy to seperate
+
+```{r}
+# (?<=[SP|FA]): any character *before* the split point is a "SP" or "FA"
+# (?=2): the first character *after* the split point is a 2
+classes |> 
+  separate(sem, 
+          c("semester", "year"),
+          "(?<=[SP|FA])(?=2)")
+```
+
+```{r}
+# More general:
+# (?<=[a-zA-Z]): any character *before* the split point is a lower or upper case letter
+# (?=[0-9]): the first character *after* the split point is number
+classes |> 
+  separate(sem, 
+          c("semester", "year"),
+          "(?<=[A-Z])(?=[0-9])")
+```
+
+
