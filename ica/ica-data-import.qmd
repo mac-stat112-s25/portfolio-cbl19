@@ -1,0 +1,122 @@
+---
+title: "ica-data-import"
+format: html
+---
+
+```{r}
+library(tidyverse)
+ imdb_messy <- read_csv("/Users/colettelawler/Downloads/GitHub/portfolio-cbl19/data/imdb_5000_messy.csv")
+ 
+```
+
+```{r}
+# This should be the folder where you stored this qmd!
+getwd()
+```
+
+```{r}
+imdb_temp <- read_csv("../data/imdb_5000_messy.csv")
+```
+```{r}
+ imdb_messy |>
+   mutate(across(where(is.character), as.factor)) |>  # convert characters to factors in order to summarize
+   summary()
+```
+Follow-up:
+
+What type of info is provided on quantitative variables? facebook likes, critical reception, etc
+What type of info is provided on categorical variables? names of movies, actors, directors
+What stands out to you in these summaries? Is there anything you’d need to clean before using this data? it seems pretty summarized to me, just needs to be wrangled depending on data needed
+
+If you didn’t already in Exercise 3, check out the color variable in the imdb_messy dataset.
+
+What’s goofy about this / what do we need to fix? the labels are messed up, some say B&W, black and white, color, colour, etc...
+More specifically, what different categories does the color variable take, and how many movies fall into each of these categories? it should only take two, but there are many in all spellings
+```{r}
+imdb_messy |>
+  group_by(color) |>
+  summarize(n())
+```
+
+We could open the .csv file in, say, Excel or Google sheets, clean up the color variable, save a clean copy, and then reimport that into RStudio. BUT that would be the wrong thing to do. Why is it important to use R code, which we then save inside this qmd, to clean our data? 
+it keeps everything consistent in our data useage and type
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(color = fct_recode(color,
+                            "Color" = "COLOR",
+                            "Color" = "color",
+                            "Black&White" = "B&W",
+                            "Black&White" = "Black and White"))
+
+imdb_temp |>
+  count(color)  
+```
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(
+         color =  str_replace(color, "COLOR", "color"), 
+         color =  str_replace(color, "color", "color"),
+         color =  str_replace(color, "Color", "color"),
+         color =  str_replace(color, "B&W", "Black&White"), 
+         color =  str_replace(color, "Black and White", "Black&White") 
+          )
+
+imdb_temp |>
+  count(color)
+```
+```{r}
+# Count the total number of rows in imdb_messy
+nrow(imdb_messy)
+
+# Then count the number of NAs in each column
+colSums(is.na(imdb_messy))
+
+# Then count the number of NAs in a specific column
+imdb_messy |> 
+  filter(is.na(actor_1_facebook_likes))
+```
+As a second step, let’s think about why some values are missing. Study the individual observations with NAs carefully. Why do you think they are missing? Are certain films more likely to have more NAs than others? Ones that are less popular
+
+Consider a more specific example. Obtain a dataset of movies that are missing data on actor_1_facebook_likes. Then explain why you think there are NAs. HINT: is.na(___) 
+They don't have facebook
+
+```{r}
+imdb_messy |>
+  summarize(mean(duration, na.rm = TRUE))
+```
+How are the NAs dealt with here? Did we have to create and save a new dataset in order to do this analysis? just put na.rm = true
+
+```{r}
+imdb_temp <- drop_na(imdb_messy)
+```
+
+What did drop_na() do? How many data points are left? dropped all values w na 
+In what situations might this function be a good idea? when na values need to be removed
+In what situations might this function be a bad idea? when need na values
+
+```{r}
+ ggplot(imdb_messy, aes(x = duration, fill = color)) + 
+   geom_density()
+```
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  select(duration, color) |> 
+  drop_na()
+dim(imdb_temp) 
+
+  ggplot(imdb_temp, aes(x = duration, fill = color)) +
+  geom_density()
+```
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(actor_1_facebook_likes =
+         replace_na(actor_1_facebook_likes, 0))
+
+imdb_temp |> 
+  summarize(sum(is.na(actor_1_facebook_likes)))
+```
+
+
