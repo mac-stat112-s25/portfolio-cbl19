@@ -1,0 +1,83 @@
+---
+title: "exam_2"
+format: html
+---
+
+```{r}
+library(tidytuesdayR)
+library(tidyverse)
+library(rnaturalearth) 
+library(sf)
+
+tuesdata <- tt_load('2020-02-18')
+fc <- tuesdata$food_consumption
+
+
+head(fc)
+```
+```{r}
+ fc |>
+  mutate(food_category = fct_recode(food_category, 
+         "Lamb" = "Lamb & Goat",
+         "Dairy" = "Milk - inc. cheese",
+         "Wheat" = "Wheat and Wheat Products", 
+         "Nuts" = "Nuts inc. Peanut Butter"
+                          )) 
+```
+
+
+
+1.  Which 5 countries consume the most food?
+
+```{r}
+fc |>
+  group_by(country) |>
+  summarize(sum = sum(consumption)) |>
+  arrange(desc(sum)) |>
+  head(5)
+```
+
+```{r}
+fc |>
+  group_by(country) |>
+  summarize(sum = sum(consumption)) |>
+  arrange(desc(sum)) |>
+  head(5) |>
+ggplot(aes(x = country, y = sum)) +
+  geom_col() +
+  labs(x = "Country", y = "Food Consumption")
+```
+2. Which top 5 countries consume each food?
+
+```{r}
+fc |>
+  select(food_category, country, consumption) |>
+   group_by(food_category) |>
+  slice_max(consumption, n = 5)
+```
+
+
+```{r}
+fc |>
+  select(food_category, country, consumption) |>
+  group_by(food_category) |>
+  slice_max(consumption, n = 5) |>
+ggplot(aes(x = country, y = consumption)) +
+geom_col() +
+  facet_wrap(~food_category) +
+  labs(x = "Country", y = "Consumption")
+```
+
+3. What does the consumption of each food look like?
+
+```{r}
+fc |>
+  left_join(fcc |> select(-co2_emission), group_by(food_category) |> join_by(name == country))
+```
+```{r}
+ne_countries(returnclass == "sf") |>
+  select(name, geometry) |>
+  mutate(name = ifelse(name == "United States of America", "USA", name)) 
+  
+```
+
