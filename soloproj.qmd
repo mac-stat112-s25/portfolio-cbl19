@@ -9,19 +9,23 @@ county_shapes <- read_sf("/Users/colettelawler/Downloads/cb_2023_us_county_500k"
 
 head(county_shapes)
 ```
+
 ```{r}
 library(tidyverse) 
   vaccine_data <- read_csv("/Users/colettelawler/Downloads/Vaccine_Hesitancy_for_COVID-19__County_and_local_estimates_20250402.csv")
 ```
+
 ```{r}
 head(vaccine_data)
 ```
+
 ```{r}
 vaccine_clean <-
 vaccine_data |>
   filter(State == "NEBRASKA") |>
   separate(`County Name`, c("name", "county")) 
 ```
+
 ```{r}
 vaccine_renamed <-
 vaccine_clean |>
@@ -56,4 +60,8 @@ ggplot() +
   theme_void() +
   theme(legend.position = "right")
 ```
-This map shows percentages of vaccine hesitancy per county in Nebraska. There are a few counties with N/A data, but for the most part, there's medium hesitancy in general. Honestly, from living in Nebraska and experiencing the political climate of the state, it's a lot less than I expected. In Eastern Nebraska (the green counties represent Omaha and Lincoln), it doesn't surprise me that there's less hesitancy, since those counties tend to lean more Democratic than rural counties, which heavily favor Republicans (many of whom, especially in Nebraska, were opposed to vaccine and mask mandates). 
+
+This map shows percentages of vaccine hesitancy per county in Nebraska.
+There are a few counties with N/A data, but for the most part, there's medium hesitancy in general.
+Honestly, from living in Nebraska and experiencing the political climate of the state, it's a lot less than I expected.
+In Eastern Nebraska (the green counties represent Omaha and Lincoln), it doesn't surprise me that there's less hesitancy, since those counties tend to lean more Democratic than rural counties, which heavily favor Republicans (many of whom, especially in Nebraska, were opposed to vaccine and mask mandates).
