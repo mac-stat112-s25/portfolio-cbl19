@@ -1,5 +1,5 @@
 ---
-title: "solo.project"
+title: "Solo Project"
 editor: visual
 ---
 
@@ -9,17 +9,19 @@ county_shapes <- read_sf("/Users/colettelawler/Downloads/cb_2023_us_county_500k"
 
 head(county_shapes)
 ```
+
 ```{r}
 library(tidyverse) 
   vaccine_data <- read_csv("/Users/colettelawler/Downloads/Vaccine_Hesitancy_for_COVID-19__County_and_local_estimates_20250402.csv")
 ```
+
 ```{r}
 head(vaccine_data)
 ```
+
 ```{r}
 vaccine_clean <-
 vaccine_data |>
   filter(State == "NEBRASKA") |>
   separate(`County Name`, c("name", "county")) 
 ```
-
