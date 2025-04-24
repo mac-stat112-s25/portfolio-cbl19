@@ -87,8 +87,7 @@ ggplot(woll, aes(x = raintoday, fill = raintomorrow)) +
 # draw a line that illustrates the movement of RAW temperatures from day to day
 # NOTE: We haven't learned this geom yet! Guess.
 ggplot(woll, aes(x = temp3pm, fill = date)) +
-geom_density() +
-  geom_trend()
+geom_density() 
 ```
 
 ```{r}

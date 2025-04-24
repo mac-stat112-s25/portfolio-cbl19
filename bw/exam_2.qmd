@@ -71,13 +71,9 @@ geom_col() +
 3. What does the consumption of each food look like?
 
 ```{r}
-fc |>
-  left_join(fcc |> select(-co2_emission), group_by(food_category) |> join_by(name == country))
+
 ```
 ```{r}
-ne_countries(returnclass == "sf") |>
-  select(name, geometry) |>
-  mutate(name = ifelse(name == "United States of America", "USA", name)) 
-  
+
 ```
 

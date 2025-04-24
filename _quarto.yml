@@ -44,7 +44,7 @@ book:
     - part: "Summary Sheets"
       chapters: 
         - summaries/Visualization.qmd
-        - summaries/Wrangling.qmd
+        - summaries/Wranging.qmd
 
 
 format:
