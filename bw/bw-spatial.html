@@ -286,139 +286,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header><p>Use this file to generate a professional looking <strong>spatial</strong> visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.</p>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">#load libraries</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(openintro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: airports
-Loading required package: cherryblossom
-Loading required package: usdata</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(maps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'maps'
-
-The following object is masked from 'package:purrr':
-
-    map</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">library</span>(gplots)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'gplots'
-
-The following object is masked from 'package:stats':
-
-    lowess</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(mosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Registered S3 method overwritten by 'mosaic':
-  method                           from   
-  fortify.SpatialPolygonsDataFrame ggplot2
-
-The 'mosaic' package masks several functions from core packages in order to add 
-additional features.  The original behavior of these functions should not be affected by this.
-
-Attaching package: 'mosaic'
-
-The following object is masked from 'package:Matrix':
-
-    mean
-
-The following object is masked from 'package:openintro':
-
-    dotPlot
-
-The following objects are masked from 'package:dplyr':
-
-    count, do, tally
-
-The following object is masked from 'package:purrr':
-
-    cross
-
-The following object is masked from 'package:ggplot2':
-
-    stat
-
-The following objects are masked from 'package:stats':
-
-    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-    quantile, sd, t.test, var
-
-The following objects are masked from 'package:base':
-
-    max, mean, min, prod, range, sample, sum</code></pre>
-</div>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(maps)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(mosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Import starbucks  data</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/starbucks.csv"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3"></a>states_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4"></a>starbucks_us_by_state <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">count</span>(State.Province) <span class="sc">|&gt;</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">mutate</span>(<span class="at">state_name =</span> <span class="fu">str_to_lower</span>(<span class="fu">abbr2state</span>(State.Province)))</span>
-<span id="cb13-8"><a href="#cb13-8"></a>census_pop_est_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://mac-stat.github.io/data/us_census_2018_state_pop_est.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">separate</span>(state, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"dot"</span>, <span class="st">"state"</span>), <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">select</span>(<span class="sc">-</span>dot) <span class="sc">|&gt;</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">str_to_lower</span>(state))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output cell-output-stderr">
-<pre><code>Rows: 51 Columns: 2
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (1): state
-dbl (1): est_pop_2018
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>starbucks_with_2018_pop_est <span class="ot">&lt;-</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  starbucks_us_by_state <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">left_join</span>(census_pop_est_2018,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state_name"</span> <span class="ot">=</span> <span class="st">"state"</span>)</span>
-<span id="cb15-5"><a href="#cb15-5"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">mutate</span>(<span class="at">starbucks_per_10000 =</span> (n <span class="sc">/</span> est_pop_2018) <span class="sc">*</span> <span class="dv">10000</span>)</span>
-<span id="cb15-7"><a href="#cb15-7"></a>starbucks_contiguous_us <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>, State.Province <span class="sc">!=</span> <span class="st">"AK"</span>, State.Province <span class="sc">!=</span> <span class="st">"HI"</span>)</span>
-<span id="cb15-9"><a href="#cb15-9"></a></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#Creating map of Starbucks locations, and density of Starbucks per population</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
-<span id="cb15-12"><a href="#cb15-12"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb15-16"><a href="#cb15-16"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb15-17"><a href="#cb15-17"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
-<span id="cb15-18"><a href="#cb15-18"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
-<span id="cb15-19"><a href="#cb15-19"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb15-20"><a href="#cb15-20"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-21"><a href="#cb15-21"></a>  <span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Import starbucks  data</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/starbucks.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>states_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a>starbucks_us_by_state <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">count</span>(State.Province) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">mutate</span>(<span class="at">state_name =</span> <span class="fu">str_to_lower</span>(<span class="fu">abbr2state</span>(State.Province)))</span>
+<span id="cb2-8"><a href="#cb2-8"></a>census_pop_est_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://mac-stat.github.io/data/us_census_2018_state_pop_est.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">separate</span>(state, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"dot"</span>, <span class="st">"state"</span>), <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">select</span>(<span class="sc">-</span>dot) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">str_to_lower</span>(state))</span>
+<span id="cb2-12"><a href="#cb2-12"></a>starbucks_with_2018_pop_est <span class="ot">&lt;-</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  starbucks_us_by_state <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">left_join</span>(census_pop_est_2018,</span>
+<span id="cb2-15"><a href="#cb2-15"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state_name"</span> <span class="ot">=</span> <span class="st">"state"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">mutate</span>(<span class="at">starbucks_per_10000 =</span> (n <span class="sc">/</span> est_pop_2018) <span class="sc">*</span> <span class="dv">10000</span>)</span>
+<span id="cb2-18"><a href="#cb2-18"></a>starbucks_contiguous_us <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>, State.Province <span class="sc">!=</span> <span class="st">"AK"</span>, State.Province <span class="sc">!=</span> <span class="st">"HI"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#Creating map of Starbucks locations, and density of Starbucks per population</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
+<span id="cb2-29"><a href="#cb2-29"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
+<span id="cb2-30"><a href="#cb2-30"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>  <span class="fu">theme_map</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="bw-spatial_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Starbucks in the United States"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Starbucks in the United States"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>$title
 [1] "Starbucks in the United States"
@@ -426,7 +342,7 @@ dbl (1): est_pop_2018
 attr(,"class")
 [1] "labels"</code></pre>
 </div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>  <span class="co">#| fig-cap: "By Colette Lawler"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>  <span class="co">#| fig-cap: "By Colette Lawler"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -1064,60 +980,60 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb19" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">---</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="an">title:</span><span class="co"> "Spatial Viz"</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a><span class="co">---</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a>Use this file to generate a professional looking **spatial** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.</span>
-<span id="cb19-8"><a href="#cb19-8"></a><span class="in">```{r}</span></span>
-<span id="cb19-9"><a href="#cb19-9"></a><span class="co">#load libraries</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb19-11"><a href="#cb19-11"></a><span class="fu">library</span>(openintro)</span>
-<span id="cb19-12"><a href="#cb19-12"></a><span class="fu">library</span>(sf)</span>
-<span id="cb19-13"><a href="#cb19-13"></a><span class="fu">library</span>(maps)</span>
-<span id="cb19-14"><a href="#cb19-14"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb19-15"><a href="#cb19-15"></a><span class="fu">library</span>(gplots)</span>
-<span id="cb19-16"><a href="#cb19-16"></a><span class="fu">library</span>(mosaic)</span>
-<span id="cb19-17"><a href="#cb19-17"></a><span class="in">```</span></span>
-<span id="cb19-18"><a href="#cb19-18"></a></span>
-<span id="cb19-19"><a href="#cb19-19"></a></span>
-<span id="cb19-22"><a href="#cb19-22"></a><span class="in">```{r}</span></span>
-<span id="cb19-23"><a href="#cb19-23"></a><span class="co"># Import starbucks  data</span></span>
-<span id="cb19-24"><a href="#cb19-24"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/starbucks.csv"</span>)</span>
-<span id="cb19-25"><a href="#cb19-25"></a>states_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
-<span id="cb19-26"><a href="#cb19-26"></a>starbucks_us_by_state <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
-<span id="cb19-27"><a href="#cb19-27"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-28"><a href="#cb19-28"></a>  <span class="fu">count</span>(State.Province) <span class="sc">|&gt;</span></span>
-<span id="cb19-29"><a href="#cb19-29"></a>  <span class="fu">mutate</span>(<span class="at">state_name =</span> <span class="fu">str_to_lower</span>(<span class="fu">abbr2state</span>(State.Province)))</span>
-<span id="cb19-30"><a href="#cb19-30"></a>census_pop_est_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://mac-stat.github.io/data/us_census_2018_state_pop_est.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-31"><a href="#cb19-31"></a>  <span class="fu">separate</span>(state, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"dot"</span>, <span class="st">"state"</span>), <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-32"><a href="#cb19-32"></a>  <span class="fu">select</span>(<span class="sc">-</span>dot) <span class="sc">|&gt;</span></span>
-<span id="cb19-33"><a href="#cb19-33"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">str_to_lower</span>(state))</span>
-<span id="cb19-34"><a href="#cb19-34"></a>starbucks_with_2018_pop_est <span class="ot">&lt;-</span></span>
-<span id="cb19-35"><a href="#cb19-35"></a>  starbucks_us_by_state <span class="sc">|&gt;</span></span>
-<span id="cb19-36"><a href="#cb19-36"></a>  <span class="fu">left_join</span>(census_pop_est_2018,</span>
-<span id="cb19-37"><a href="#cb19-37"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state_name"</span> <span class="ot">=</span> <span class="st">"state"</span>)</span>
-<span id="cb19-38"><a href="#cb19-38"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb19-39"><a href="#cb19-39"></a>  <span class="fu">mutate</span>(<span class="at">starbucks_per_10000 =</span> (n <span class="sc">/</span> est_pop_2018) <span class="sc">*</span> <span class="dv">10000</span>)</span>
-<span id="cb19-40"><a href="#cb19-40"></a>starbucks_contiguous_us <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
-<span id="cb19-41"><a href="#cb19-41"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>, State.Province <span class="sc">!=</span> <span class="st">"AK"</span>, State.Province <span class="sc">!=</span> <span class="st">"HI"</span>)</span>
-<span id="cb19-42"><a href="#cb19-42"></a></span>
-<span id="cb19-43"><a href="#cb19-43"></a><span class="co">#Creating map of Starbucks locations, and density of Starbucks per population</span></span>
-<span id="cb19-44"><a href="#cb19-44"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
-<span id="cb19-45"><a href="#cb19-45"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
-<span id="cb19-46"><a href="#cb19-46"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
-<span id="cb19-47"><a href="#cb19-47"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb19-48"><a href="#cb19-48"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb19-49"><a href="#cb19-49"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb19-50"><a href="#cb19-50"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
-<span id="cb19-51"><a href="#cb19-51"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
-<span id="cb19-52"><a href="#cb19-52"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb19-53"><a href="#cb19-53"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-54"><a href="#cb19-54"></a>  <span class="fu">theme_map</span>()</span>
-<span id="cb19-55"><a href="#cb19-55"></a></span>
-<span id="cb19-56"><a href="#cb19-56"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Starbucks in the United States"</span>)</span>
-<span id="cb19-57"><a href="#cb19-57"></a>  <span class="co">#| fig-cap: "By Colette Lawler"</span></span>
-<span id="cb19-58"><a href="#cb19-58"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="an">title:</span><span class="co"> "Spatial Viz"</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">---</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>Use this file to generate a professional looking **spatial** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.</span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="in">```{r}</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#load libraries</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="fu">library</span>(openintro)</span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="fu">library</span>(sf)</span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="fu">library</span>(maps)</span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="fu">library</span>(gplots)</span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="fu">library</span>(mosaic)</span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="in">```</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a></span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="in">```{r}</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co"># Import starbucks  data</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>starbucks <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/starbucks.csv"</span>)</span>
+<span id="cb6-25"><a href="#cb6-25"></a>states_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
+<span id="cb6-26"><a href="#cb6-26"></a>starbucks_us_by_state <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>  <span class="fu">count</span>(State.Province) <span class="sc">|&gt;</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a>  <span class="fu">mutate</span>(<span class="at">state_name =</span> <span class="fu">str_to_lower</span>(<span class="fu">abbr2state</span>(State.Province)))</span>
+<span id="cb6-30"><a href="#cb6-30"></a>census_pop_est_2018 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://mac-stat.github.io/data/us_census_2018_state_pop_est.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-31"><a href="#cb6-31"></a>  <span class="fu">separate</span>(state, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"dot"</span>, <span class="st">"state"</span>), <span class="at">extra =</span> <span class="st">"merge"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-32"><a href="#cb6-32"></a>  <span class="fu">select</span>(<span class="sc">-</span>dot) <span class="sc">|&gt;</span></span>
+<span id="cb6-33"><a href="#cb6-33"></a>  <span class="fu">mutate</span>(<span class="at">state =</span> <span class="fu">str_to_lower</span>(state))</span>
+<span id="cb6-34"><a href="#cb6-34"></a>starbucks_with_2018_pop_est <span class="ot">&lt;-</span></span>
+<span id="cb6-35"><a href="#cb6-35"></a>  starbucks_us_by_state <span class="sc">|&gt;</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a>  <span class="fu">left_join</span>(census_pop_est_2018,</span>
+<span id="cb6-37"><a href="#cb6-37"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state_name"</span> <span class="ot">=</span> <span class="st">"state"</span>)</span>
+<span id="cb6-38"><a href="#cb6-38"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a>  <span class="fu">mutate</span>(<span class="at">starbucks_per_10000 =</span> (n <span class="sc">/</span> est_pop_2018) <span class="sc">*</span> <span class="dv">10000</span>)</span>
+<span id="cb6-40"><a href="#cb6-40"></a>starbucks_contiguous_us <span class="ot">&lt;-</span> starbucks <span class="sc">|&gt;</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>, State.Province <span class="sc">!=</span> <span class="st">"AK"</span>, State.Province <span class="sc">!=</span> <span class="st">"HI"</span>)</span>
+<span id="cb6-42"><a href="#cb6-42"></a></span>
+<span id="cb6-43"><a href="#cb6-43"></a><span class="co">#Creating map of Starbucks locations, and density of Starbucks per population</span></span>
+<span id="cb6-44"><a href="#cb6-44"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
+<span id="cb6-45"><a href="#cb6-45"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
+<span id="cb6-46"><a href="#cb6-46"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
+<span id="cb6-47"><a href="#cb6-47"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb6-48"><a href="#cb6-48"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
+<span id="cb6-49"><a href="#cb6-49"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb6-50"><a href="#cb6-50"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
+<span id="cb6-51"><a href="#cb6-51"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
+<span id="cb6-52"><a href="#cb6-52"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb6-53"><a href="#cb6-53"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-54"><a href="#cb6-54"></a>  <span class="fu">theme_map</span>()</span>
+<span id="cb6-55"><a href="#cb6-55"></a></span>
+<span id="cb6-56"><a href="#cb6-56"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Starbucks in the United States"</span>)</span>
+<span id="cb6-57"><a href="#cb6-57"></a>  <span class="co">#| fig-cap: "By Colette Lawler"</span></span>
+<span id="cb6-58"><a href="#cb6-58"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
