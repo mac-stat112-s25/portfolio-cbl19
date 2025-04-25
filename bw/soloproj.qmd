@@ -1,5 +1,5 @@
 ---
-title: "solo.project"
+title: "Solo Project"
 editor: visual
 ---
 
