@@ -19,7 +19,9 @@ ggplot(fc, aes(map_id = country, fill = consumption)) +
   geom_map(map = world_map) +
   expand_limits(x = world_map$long, y = world_map$lat) +
   facet_wrap(~food_category) +
-  labs(x = "", y = "") +
+  labs(x = "", y = "",
+       title = "Food Consumption per Country by Food Category",
+       caption = "Source: Tidy Tuesday, Visualization by Colette Lawler") +
   scale_fill_gradientn(name = "Consumption: kg/person/year", colors = c("lightblue", "blue", "darkblue"))
 
 

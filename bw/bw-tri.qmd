@@ -2,7 +2,6 @@
 title: "Trivariate Viz"
 ---
 
-Use this file to generate a professional looking **trivariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
 
 ```{r}
 library(tidyverse)
@@ -24,6 +23,8 @@ daily_births <- Birthdays |>
 ggplot(daily_births, aes(y= births, color = month, x = year)) + 
   geom_point() + 
   geom_smooth(method = "lm") +
-  labs(x = "Year", y = "Births", color = "Month")
+  labs(x = "Year", y = "Births", color = "Month",
+       title = "Number of Births per Month per Year since 1970",
+       caption = "Source: Mosiac, Visualization: Colette Lawler")
 
 ```

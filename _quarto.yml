@@ -4,7 +4,7 @@ project:
 
 book:
   title: "COMP/STAT112 Notebook"
-  author: "Your Name Here"
+  author: "Colette Lawler"
   date: today
   reader-mode: true
   page-navigation: true
@@ -13,7 +13,7 @@ book:
   
   
   sidebar:
-    title: "Your Name Here"
+    title: "Colette Lawler"
     collapse-level: 2
     style: "docked"
     pinned: true
@@ -33,6 +33,11 @@ book:
       - bw/exam.qmd
       - bw/exam_2.qmd
       - bw/soloproj.qmd
+      
+    - part: "Summary Sheets"
+      chapters: 
+        - summaries/Visualization.qmd
+        - summaries/Wranging.qmd
 
     - part: "In-class Activities"
       chapters: 
@@ -40,11 +45,6 @@ book:
       - ica/ica-bi.qmd
       - ica/ica-multi.qmd
       - ica/ica-spatial.qmd
-
-    - part: "Summary Sheets"
-      chapters: 
-        - summaries/Visualization.qmd
-        - summaries/Wranging.qmd
 
 
 format:
@@ -64,7 +64,7 @@ format:
 
 execute:
   cache: false
-  freeze: auto
+  freeze: false
   echo: true
   warning: false
   error: false

@@ -56,7 +56,9 @@ ggplot() +
   geom_sf(data = nebraska_shapes,
           aes(fill = total_hesitancy)) +
    scale_fill_gradientn(name = "Total Hesitancy", colors = terrain.colors(10)) +
-  labs(fill = NULL) +
+  labs(fill = NULL,
+       title = "Percentage of population per country hesitant to receive COVID-19 vaccine in Nebraska",
+       caption = "Source: CDC • Visualization by Colette Lawler") +
   theme_void() +
   theme(legend.position = "right")
 ```

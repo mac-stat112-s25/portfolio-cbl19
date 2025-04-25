@@ -2,7 +2,6 @@
 title: "Univariate Viz"
 ---
 
-Use this file to generate a professional looking **univariate** visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
 
 ```{r}
 library(tidyverse)
@@ -11,5 +10,7 @@ hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
 #Graphing relationship between number of hikes and elevation of each
 ggplot(hikes, aes(x = elevation)) +
   geom_histogram(color = "white", fill = "pink", binwidth = 200) +
-  labs(x = "Elevation (feet)", y = "Number of hikes")
+  labs(x = "Elevation (feet)", y = "Number of hikes",
+       title = "Elevation of Hikes in New York State",
+       caption = "Source from Github, Visualization by Colette Lawler")
 ```
