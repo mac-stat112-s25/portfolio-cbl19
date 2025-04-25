@@ -299,12 +299,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8"></a>         <span class="at">day_of_month =</span> <span class="fu">mday</span>(date),</span>
 <span id="cb2-9"><a href="#cb2-9"></a>         <span class="at">day_of_week =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="fu">ggplot</span>(daily_births, <span class="fu">aes</span>(<span class="at">y=</span> births, <span class="at">color =</span> month, <span class="at">x =</span> year)) <span class="sc">+</span> </span>
-<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Births"</span>, <span class="at">color =</span> <span class="st">"Month"</span>,</span>
-<span id="cb2-15"><a href="#cb2-15"></a>       <span class="at">title =</span> <span class="st">"Number of Births per Month per Year since 1970"</span>,</span>
-<span id="cb2-16"><a href="#cb2-16"></a>       <span class="at">caption =</span> <span class="st">"Source: Mosiac, Visualization: Colette Lawler"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#| fig-alt: "Scatterplot with trend lines showing number of births per month per year since 1970. Birth rates steadily increase over the years, with later summer months having consistently more births than other months."</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="fu">ggplot</span>(daily_births, <span class="fu">aes</span>(<span class="at">y=</span> births, <span class="at">color =</span> month, <span class="at">x =</span> year)) <span class="sc">+</span> </span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Births"</span>, <span class="at">color =</span> <span class="st">"Month"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16"></a>       <span class="at">title =</span> <span class="st">"Number of Births per Month per Year since 1970"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17"></a>       <span class="at">caption =</span> <span class="st">"Source: Mosiac, Visualization: Colette Lawler"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="bw-tri_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -969,14 +970,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-24"><a href="#cb3-24"></a>         <span class="at">day_of_month =</span> <span class="fu">mday</span>(date),</span>
 <span id="cb3-25"><a href="#cb3-25"></a>         <span class="at">day_of_week =</span> <span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb3-26"><a href="#cb3-26"></a></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="fu">ggplot</span>(daily_births, <span class="fu">aes</span>(<span class="at">y=</span> births, <span class="at">color =</span> month, <span class="at">x =</span> year)) <span class="sc">+</span> </span>
-<span id="cb3-28"><a href="#cb3-28"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb3-29"><a href="#cb3-29"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Births"</span>, <span class="at">color =</span> <span class="st">"Month"</span>,</span>
-<span id="cb3-31"><a href="#cb3-31"></a>       <span class="at">title =</span> <span class="st">"Number of Births per Month per Year since 1970"</span>,</span>
-<span id="cb3-32"><a href="#cb3-32"></a>       <span class="at">caption =</span> <span class="st">"Source: Mosiac, Visualization: Colette Lawler"</span>)</span>
-<span id="cb3-33"><a href="#cb3-33"></a></span>
-<span id="cb3-34"><a href="#cb3-34"></a><span class="in">```</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#| fig-alt: "Scatterplot with trend lines showing number of births per month per year since 1970. Birth rates steadily increase over the years, with later summer months having consistently more births than other months."</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="fu">ggplot</span>(daily_births, <span class="fu">aes</span>(<span class="at">y=</span> births, <span class="at">color =</span> month, <span class="at">x =</span> year)) <span class="sc">+</span> </span>
+<span id="cb3-29"><a href="#cb3-29"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-30"><a href="#cb3-30"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Births"</span>, <span class="at">color =</span> <span class="st">"Month"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32"></a>       <span class="at">title =</span> <span class="st">"Number of Births per Month per Year since 1970"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33"></a>       <span class="at">caption =</span> <span class="st">"Source: Mosiac, Visualization: Colette Lawler"</span>)</span>
+<span id="cb3-34"><a href="#cb3-34"></a></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -402,7 +402,7 @@ Geodetic CRS:  NAD83
 <span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="soloproj_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="soloproj_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" alt="Chloropleth map showing percentages of vaccine hesitancy per county in Nebraska. Most lie at 26% or a bit above in West of the state, while Eastern cities like Omaha and Lincoln are 25% or less." width="672"></p>
 </figure>
 </div>
 </div>
@@ -1097,21 +1097,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-64"><a href="#cb13-64"></a><span class="in">```</span></span>
 <span id="cb13-65"><a href="#cb13-65"></a></span>
 <span id="cb13-68"><a href="#cb13-68"></a><span class="in">```{r}</span></span>
-<span id="cb13-69"><a href="#cb13-69"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb13-70"><a href="#cb13-70"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nebraska_shapes,</span>
-<span id="cb13-71"><a href="#cb13-71"></a>          <span class="fu">aes</span>(<span class="at">fill =</span> total_hesitancy)) <span class="sc">+</span></span>
-<span id="cb13-72"><a href="#cb13-72"></a>   <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Total Hesitancy"</span>, <span class="at">colors =</span> <span class="fu">terrain.colors</span>(<span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb13-73"><a href="#cb13-73"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="cn">NULL</span>,</span>
-<span id="cb13-74"><a href="#cb13-74"></a>       <span class="at">title =</span> <span class="st">"Percentage of population per country hesitant to receive COVID-19 vaccine in Nebraska"</span>,</span>
-<span id="cb13-75"><a href="#cb13-75"></a>       <span class="at">caption =</span> <span class="st">"Source: CDC • Visualization by Colette Lawler"</span>) <span class="sc">+</span></span>
-<span id="cb13-76"><a href="#cb13-76"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb13-77"><a href="#cb13-77"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
-<span id="cb13-78"><a href="#cb13-78"></a><span class="in">```</span></span>
-<span id="cb13-79"><a href="#cb13-79"></a></span>
-<span id="cb13-80"><a href="#cb13-80"></a>This map shows percentages of vaccine hesitancy per county in Nebraska.</span>
-<span id="cb13-81"><a href="#cb13-81"></a>There are a few counties with N/A data, but for the most part, there's medium hesitancy in general.</span>
-<span id="cb13-82"><a href="#cb13-82"></a>Honestly, from living in Nebraska and experiencing the political climate of the state, it's a lot less than I expected.</span>
-<span id="cb13-83"><a href="#cb13-83"></a>In Eastern Nebraska (the green counties represent Omaha and Lincoln), it doesn't surprise me that there's less hesitancy, since those counties tend to lean more Democratic than rural counties, which heavily favor Republicans (many of whom, especially in Nebraska, were opposed to vaccine and mask mandates).</span>
+<span id="cb13-69"><a href="#cb13-69"></a><span class="co">#| fig-alt: "Chloropleth map showing percentages of vaccine hesitancy per county in Nebraska. Most lie at 26% or a bit above in West of the state, while Eastern cities like Omaha and Lincoln are 25% or less."</span></span>
+<span id="cb13-70"><a href="#cb13-70"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-71"><a href="#cb13-71"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> nebraska_shapes,</span>
+<span id="cb13-72"><a href="#cb13-72"></a>          <span class="fu">aes</span>(<span class="at">fill =</span> total_hesitancy)) <span class="sc">+</span></span>
+<span id="cb13-73"><a href="#cb13-73"></a>   <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Total Hesitancy"</span>, <span class="at">colors =</span> <span class="fu">terrain.colors</span>(<span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb13-74"><a href="#cb13-74"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb13-75"><a href="#cb13-75"></a>       <span class="at">title =</span> <span class="st">"Percentage of population per country hesitant to receive COVID-19 vaccine in Nebraska"</span>,</span>
+<span id="cb13-76"><a href="#cb13-76"></a>       <span class="at">caption =</span> <span class="st">"Source: CDC • Visualization by Colette Lawler"</span>) <span class="sc">+</span></span>
+<span id="cb13-77"><a href="#cb13-77"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb13-78"><a href="#cb13-78"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span>
+<span id="cb13-79"><a href="#cb13-79"></a><span class="in">```</span></span>
+<span id="cb13-80"><a href="#cb13-80"></a></span>
+<span id="cb13-81"><a href="#cb13-81"></a>This map shows percentages of vaccine hesitancy per county in Nebraska.</span>
+<span id="cb13-82"><a href="#cb13-82"></a>There are a few counties with N/A data, but for the most part, there's medium hesitancy in general.</span>
+<span id="cb13-83"><a href="#cb13-83"></a>Honestly, from living in Nebraska and experiencing the political climate of the state, it's a lot less than I expected.</span>
+<span id="cb13-84"><a href="#cb13-84"></a>In Eastern Nebraska (the green counties represent Omaha and Lincoln), it doesn't surprise me that there's less hesitancy, since those counties tend to lean more Democratic than rural counties, which heavily favor Republicans (many of whom, especially in Nebraska, were opposed to vaccine and mask mandates).</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

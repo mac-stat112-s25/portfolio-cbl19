@@ -292,12 +292,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2"></a>weather <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/weather_3_locations.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))  </span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co">#Observing the temperature of 3 different locations at 9am, 3pm, and facet wrap seeing if it rained that day</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="fu">ggplot</span>(weather, <span class="fu">aes</span>(<span class="at">y =</span> temp3pm, <span class="at">x =</span> temp9am, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> raintoday) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temp at 9am"</span>, <span class="at">y =</span> <span class="st">"Temp at 3pm"</span>, <span class="at">color =</span> <span class="st">"Location"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9"></a>       <span class="at">title =</span> <span class="st">"Temperature and Rain in 3 locations"</span>,</span>
-<span id="cb2-10"><a href="#cb2-10"></a>       <span class="at">caption =</span> <span class="st">"Data from Github, Visualization by Colette Lawler"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">#| fig-alt: "Scatterplot showing temperatures at 9am and 3pm in Hobart, Uluru, and Wollongong. Uluru has the highest temperatures consistently. There is a facet wrap showing if it rained the day temperatures were recorded. For days marked yes, the temperature is usually lower in all 3 locations, but not by much." </span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="fu">ggplot</span>(weather, <span class="fu">aes</span>(<span class="at">y =</span> temp3pm, <span class="at">x =</span> temp9am, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> raintoday) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temp at 9am"</span>, <span class="at">y =</span> <span class="st">"Temp at 3pm"</span>, <span class="at">color =</span> <span class="st">"Location"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10"></a>       <span class="at">title =</span> <span class="st">"Temperature and Rain in 3 locations"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>       <span class="at">caption =</span> <span class="st">"Data from Github, Visualization by Colette Lawler"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="bw-quad_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -955,13 +956,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-17"><a href="#cb3-17"></a>weather <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://mac-stat.github.io/data/weather_3_locations.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb3-18"><a href="#cb3-18"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date))  </span>
 <span id="cb3-19"><a href="#cb3-19"></a><span class="co">#Observing the temperature of 3 different locations at 9am, 3pm, and facet wrap seeing if it rained that day</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="fu">ggplot</span>(weather, <span class="fu">aes</span>(<span class="at">y =</span> temp3pm, <span class="at">x =</span> temp9am, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
-<span id="cb3-21"><a href="#cb3-21"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> raintoday) <span class="sc">+</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temp at 9am"</span>, <span class="at">y =</span> <span class="st">"Temp at 3pm"</span>, <span class="at">color =</span> <span class="st">"Location"</span>,</span>
-<span id="cb3-24"><a href="#cb3-24"></a>       <span class="at">title =</span> <span class="st">"Temperature and Rain in 3 locations"</span>,</span>
-<span id="cb3-25"><a href="#cb3-25"></a>       <span class="at">caption =</span> <span class="st">"Data from Github, Visualization by Colette Lawler"</span>)</span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="in">```</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#| fig-alt: "Scatterplot showing temperatures at 9am and 3pm in Hobart, Uluru, and Wollongong. Uluru has the highest temperatures consistently. There is a facet wrap showing if it rained the day temperatures were recorded. For days marked yes, the temperature is usually lower in all 3 locations, but not by much." </span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="fu">ggplot</span>(weather, <span class="fu">aes</span>(<span class="at">y =</span> temp3pm, <span class="at">x =</span> temp9am, <span class="at">color =</span> location)) <span class="sc">+</span> </span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> raintoday) <span class="sc">+</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temp at 9am"</span>, <span class="at">y =</span> <span class="st">"Temp at 3pm"</span>, <span class="at">color =</span> <span class="st">"Location"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25"></a>       <span class="at">title =</span> <span class="st">"Temperature and Rain in 3 locations"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26"></a>       <span class="at">caption =</span> <span class="st">"Data from Github, Visualization by Colette Lawler"</span>)</span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

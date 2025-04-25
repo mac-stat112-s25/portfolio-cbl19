@@ -316,19 +316,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>, State.Province <span class="sc">!=</span> <span class="st">"AK"</span>, State.Province <span class="sc">!=</span> <span class="st">"HI"</span>)</span>
 <span id="cb2-20"><a href="#cb2-20"></a></span>
 <span id="cb2-21"><a href="#cb2-21"></a><span class="co">#Creating map of Starbucks locations, and density of Starbucks per population</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb2-28"><a href="#cb2-28"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
-<span id="cb2-29"><a href="#cb2-29"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
-<span id="cb2-30"><a href="#cb2-30"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a>  ) <span class="sc">+</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb2-33"><a href="#cb2-33"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density of Starbucks' in the United States"</span>, </span>
-<span id="cb2-34"><a href="#cb2-34"></a>       <span class="at">caption =</span> <span class="st">"Source from Github, By Colette Lawler"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#| fig-alt: "Map of Starbucks locations in the United States. Most are concentrated on the West Coast, with a lot existing in major cities across the US. The least amount of Starbucks are in the South."</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb2-29"><a href="#cb2-29"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
+<span id="cb2-30"><a href="#cb2-30"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
+<span id="cb2-31"><a href="#cb2-31"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density of Starbucks' in the United States"</span>, </span>
+<span id="cb2-35"><a href="#cb2-35"></a>       <span class="at">caption =</span> <span class="st">"Source from Github, By Colette Lawler"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="bw-spatial_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
@@ -1009,20 +1010,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-40"><a href="#cb3-40"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"US"</span>, State.Province <span class="sc">!=</span> <span class="st">"AK"</span>, State.Province <span class="sc">!=</span> <span class="st">"HI"</span>)</span>
 <span id="cb3-41"><a href="#cb3-41"></a></span>
 <span id="cb3-42"><a href="#cb3-42"></a><span class="co">#Creating map of Starbucks locations, and density of Starbucks per population</span></span>
-<span id="cb3-43"><a href="#cb3-43"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
-<span id="cb3-44"><a href="#cb3-44"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
-<span id="cb3-45"><a href="#cb3-45"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
-<span id="cb3-46"><a href="#cb3-46"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb3-47"><a href="#cb3-47"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
-<span id="cb3-48"><a href="#cb3-48"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb3-49"><a href="#cb3-49"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
-<span id="cb3-50"><a href="#cb3-50"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
-<span id="cb3-51"><a href="#cb3-51"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
-<span id="cb3-52"><a href="#cb3-52"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-53"><a href="#cb3-53"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
-<span id="cb3-54"><a href="#cb3-54"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density of Starbucks' in the United States"</span>, </span>
-<span id="cb3-55"><a href="#cb3-55"></a>       <span class="at">caption =</span> <span class="st">"Source from Github, By Colette Lawler"</span>)</span>
-<span id="cb3-56"><a href="#cb3-56"></a><span class="in">```</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#| fig-alt: "Map of Starbucks locations in the United States. Most are concentrated on the West Coast, with a lot existing in major cities across the US. The least amount of Starbucks are in the South."</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="fu">ggplot</span>(starbucks_with_2018_pop_est) <span class="sc">+</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a>  <span class="fu">geom_map</span>(<span class="at">map =</span> states_map, <span class="fu">aes</span>(<span class="at">map_id =</span> state_name, <span class="at">fill =</span> starbucks_per_10000)) <span class="sc">+</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> states_map<span class="sc">$</span>long, <span class="at">y =</span> states_map<span class="sc">$</span>lat) <span class="sc">+</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">name =</span> <span class="st">"Starbucks Per 10000 People"</span>, <span class="at">colors =</span> <span class="fu">c</span>(<span class="st">"darkgreen"</span>, <span class="st">"green"</span>, <span class="st">"lightgreen"</span>), <span class="at">values =</span> scales<span class="sc">::</span><span class="fu">rescale</span>(<span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>))) <span class="sc">+</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb3-50"><a href="#cb3-50"></a>    <span class="at">data =</span> starbucks_contiguous_us,</span>
+<span id="cb3-51"><a href="#cb3-51"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Longitude, <span class="at">y =</span> Latitude),</span>
+<span id="cb3-52"><a href="#cb3-52"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">size =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"blue"</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a>  <span class="fu">theme_map</span>() <span class="sc">+</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density of Starbucks' in the United States"</span>, </span>
+<span id="cb3-56"><a href="#cb3-56"></a>       <span class="at">caption =</span> <span class="st">"Source from Github, By Colette Lawler"</span>)</span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
