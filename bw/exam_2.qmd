@@ -12,11 +12,13 @@ library(sf)
 tuesdata <- tt_load('2020-02-18')
 fc <- tuesdata$food_consumption
 
+str(fc)
 
-head(fc)
+head(fc, 22)
 ```
 ```{r}
- fc |>
+fcc <-
+fc |>
   mutate(food_category = fct_recode(food_category, 
          "Lamb" = "Lamb & Goat",
          "Dairy" = "Milk - inc. cheese",
@@ -30,7 +32,7 @@ head(fc)
 1.  Which 5 countries consume the most food?
 
 ```{r}
-fc |>
+fcc |>
   group_by(country) |>
   summarize(sum = sum(consumption)) |>
   arrange(desc(sum)) |>
@@ -71,6 +73,36 @@ geom_col() +
 3. What does the consumption of each food look like?
 
 ```{r}
+ne_countries(returnclass = "sf") |>
+  select(name, geometry) |>
+  mutate(name = ifelse(name == "United States of America", "USA", name)) |>
+  mutate(name = ifelse(name == "Bosnia and Herz.", "Bosnia and Herzegovina", name)) |>
+  mutate(name = ifelse(name == "Czechia", "Czech Republic", name)) |> 
+  mutate(name = ifelse(name == "Taiwan", "Taiwan. ROC", name)) |>
+  left_join(
+    fcc |>
+      select(-co2_emmission) |>
+      group_by(food_category) |>
+      mutate(consumption = (consumption - mean(consumption))/sd(consumption)),
+    by = c("name" = "country")
+  ) |>
+  pivot_wider(names_from = food_category, values_from = consumption) |>
+  select(-"NA") |>  
+  pivot_longer(cols = c(-name, -geometry), names_to = "food_category", values_to = "consumption") |>
+  ggplot() +
+  geom_sf(aes(fill = consumption), color = "black", size = 0.2) +  
+  scale_fill_viridis_c(option = "B", direction = 1, na.value = "gray") +  
+  facet_wrap(~food_category) +
+  labs(
+    title = "Food Consumption by Country",
+    fill = "Consumption",
+    caption = "Visualization by Colette Lawler"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        strip.text = element_text(size = 10),
+        panel.spacing = unit(1, "lines"))
+```
 
 ```
 ```{r}

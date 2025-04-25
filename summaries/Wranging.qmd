@@ -3,4 +3,4 @@ title: "Wrangling"
 format: html
 ---
 
-![](images/Screenshot 2025-04-22 at 8.37.58 PM.png)
+![](images/Screenshot 2025-04-22 at 8.37.58 PM-01.png)
