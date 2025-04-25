@@ -13,6 +13,7 @@ library(tidyverse)
 weather <- read.csv("https://mac-stat.github.io/data/weather_3_locations.csv") |> 
   mutate(date = as.Date(date))  
 #Observing the temperature of 3 different locations at 9am, 3pm, and facet wrap seeing if it rained that day
+#| fig-alt: "Scatterplot showing temperatures at 9am and 3pm in Hobart, Uluru, and Wollongong. Uluru has the highest temperatures consistently. There is a facet wrap showing if it rained the day temperatures were recorded. For days marked yes, the temperature is usually lower in all 3 locations, but not by much." 
 ggplot(weather, aes(y = temp3pm, x = temp9am, color = location)) + 
   geom_point() +
   facet_wrap(~ raintoday) +

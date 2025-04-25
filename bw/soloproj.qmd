@@ -52,6 +52,7 @@ nebraska_shapes <-
 ```
 
 ```{r}
+#| fig-alt: "Chloropleth map showing percentages of vaccine hesitancy per county in Nebraska. Most lie at 26% or a bit above in West of the state, while Eastern cities like Omaha and Lincoln are 25% or less."
 ggplot() +
   geom_sf(data = nebraska_shapes,
           aes(fill = total_hesitancy)) +
@@ -64,6 +65,6 @@ ggplot() +
 ```
 
 This map shows percentages of vaccine hesitancy per county in Nebraska.
-There are a few counties with N/A data, but for the most part, there's medium hesitancy in general.
+There are a few counties with missing data, but for the most part, there's medium hesitancy in general.
 Honestly, from living in Nebraska and experiencing the political climate of the state, it's a lot less than I expected.
 In Eastern Nebraska (the green counties represent Omaha and Lincoln), it doesn't surprise me that there's less hesitancy, since those counties tend to lean more Democratic than rural counties, which heavily favor Republicans (many of whom, especially in Nebraska, were opposed to vaccine and mask mandates).

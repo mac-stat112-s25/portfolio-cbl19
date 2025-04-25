@@ -8,6 +8,7 @@ library(tidyverse)
 # Importing data
 hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
 #Graphing relationship between number of hikes and elevation of each
+#| fig-alt: "Bar graph showing the elevation of different mountain hikes in New York state. Most are in between 4000 and 4500 feet, with only a few as over 5000 and under 3500."
 ggplot(hikes, aes(x = elevation)) +
   geom_histogram(color = "white", fill = "pink", binwidth = 200) +
   labs(x = "Elevation (feet)", y = "Number of hikes",

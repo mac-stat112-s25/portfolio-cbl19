@@ -20,6 +20,7 @@ daily_births <- Birthdays |>
          day_of_month = mday(date),
          day_of_week = wday(date, label = TRUE))
 
+#| fig-alt: "Scatterplot with trend lines showing number of births per month per year since 1970. Birth rates steadily increase over the years, with later summer months having consistently more births than other months."
 ggplot(daily_births, aes(y= births, color = month, x = year)) + 
   geom_point() + 
   geom_smooth(method = "lm") +
