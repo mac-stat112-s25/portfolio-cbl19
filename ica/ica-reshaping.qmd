@@ -1,5 +1,5 @@
 ---
-title: "ica-reshaping"
+title: "Reshaping"
 format: html
 ---
 ```{r}
@@ -100,7 +100,6 @@ head(sleep_wide)
 ```
 ## Exercises
 
-{{< include activity-instructions.qmd >}}
 
 ### Exercise 1: What's the problem? {.unnumbered}
 

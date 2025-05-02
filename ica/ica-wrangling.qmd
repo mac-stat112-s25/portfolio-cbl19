@@ -1,8 +1,7 @@
 ---
-title: "8.1"
+title: "Wrangling"
 editor: visual
 ---
-
 
 ```{r}
 # Load tidyverse & data
@@ -30,33 +29,40 @@ elections |>
     theme(legend.position = "right") + 
     coord_equal()
 ```
+
 ```{r}
 # What's the first argument? The second? dempct20, dempct16
 select(elections, c(state_name, county_name, dem_pct_20, dem_pct_16))
 ```
+
 ```{r}
 elections |> 
   select(state_name, county_name, dem_pct_20, dem_pct_16)
 ```
+
 ```{r}
 # With a pipe
 elections |> 
   filter(state_name == "Minnesota")
 ```
+
 ```{r}
 # With pipes: all verbs in 1 row
 elections |> select(state_name, county_name, dem_pct_20, dem_pct_16) |> filter(state_name == "Minnesota")
 ```
+
 ```{r}
 elections |> 
   filter(state_name == "Minnesota")|> 
   select(state_name, county_name, dem_pct_20, dem_pct_16)
 ```
+
 ```{r}
 elections |> 
   select(state_name, county_name, dem_pct_20, dem_pct_16) |> 
   filter(state_name == "Minnesota")
 ```
+
 ```{r}
 # Store the results
 mn <- elections |> 
@@ -66,7 +72,6 @@ mn <- elections |>
 # Always check it out to confirm it's what you want it to be!
 head(mn)
 ```
-
 
 ```{r}
 # Load tidyverse & data

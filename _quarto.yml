@@ -45,6 +45,14 @@ book:
       - ica/ica-bi.qmd
       - ica/ica-multi.qmd
       - ica/ica-spatial.qmd
+      - ica/ica-viz.qmd
+      - ica/ica-wrangling.qmd
+      - ica/ica-dates.qmd
+      - ica/ica-reshaping.qmd
+      - ica/ica-joining.qmd
+      - ica/factors.qmd
+      - ica/ica-strings.qmd
+      - ica/ica-data-import.qmd
 
 
 format:
