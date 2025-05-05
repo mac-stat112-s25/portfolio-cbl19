@@ -266,7 +266,7 @@ elections_small |>
 # Now try it. Change the order of mutate and select below.
  elections_small |> 
    filter(state_name == "Delaware") |> 
-   select(county_name, repub_pct_20, dem_pct_20, repub_win_20) |> 
+   select(county_name, repub_pct_20, dem_pct_20) |> 
    mutate(repub_win_20 = repub_pct_20 > dem_pct_20)
 ```
 

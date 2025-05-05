@@ -59,8 +59,8 @@ classes |>
   filter(!str_detect(sem, "FA"))
 ```
 ```{r}
-classes |>
-  str_sub(classes, )
+classes |> 
+  separate(instructor, c("first", "last"), sep = " ")
 #you'd have to pivot first, and instructors do not have the same names
 ```
 
@@ -134,12 +134,12 @@ Split the course number into 3 separate variables: dept, number, and section. HI
 Store this as courses_clean so that you can use it later.
 
 ```{r}
-courses_clean <-
-courses |>
-  separate(avail_max, c("avail", "max"), sep = "/") |>
-  mutate(enroll = as.numeric(max) - as.numeric(avail)) |>
-  separate(number, c("dept", "number", "section", sep = " ", "-")) |>
-  select(dept, number, section, crn, name, days, time, room, instructor, avail, max, enroll)
+courses_clean <- courses |> 
+  separate(avail_max, c("avail", "max"), sep = " / ") |> 
+  mutate(enroll = as.numeric(max) - as.numeric(avail)) |> 
+  separate(number, c("dept", "number", "section"))
+  
+head(courses_clean)
 ```
 ```{r}
 # Identify the 6 departments that offered the most sections

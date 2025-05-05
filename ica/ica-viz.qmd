@@ -20,9 +20,9 @@ ggplot(weather, aes(x = temp3pm, fill = location)) +
   labs(x = "3pm temperature (Celsius)")  
 ```
 ```{r}
-
+#| fig-cap: "density graph of 3pm temperatures of three different locations. uluru has the highest 3pm temperature, on average."
 ggplot(weather, aes(x = temp3pm, fill = location)) + 
   geom_density(alpha = 0.5) + 
-  labs(x = "3pm temperature (Celsius)", fig-alt = "density graph of 3pm temperatures of three different locations. uluru has the highest 3pm temperature, on average.")  
+  labs(x = "3pm temperature (Celsius)", y = "9am temperature (Celsius)")  
 ```
 

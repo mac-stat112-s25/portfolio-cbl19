@@ -25,8 +25,8 @@ penguins |>
 ```{r}
 penguins |> 
   group_by(species, sex) |> 
-  summarize(n()) |>
-  mutate(freq = n / sum(n))
+  summarize(n = n()) |> 
+  mutate(proportion = n / sum(n))
 ```
 ```{r}
 penguin_avg <- penguins |> 

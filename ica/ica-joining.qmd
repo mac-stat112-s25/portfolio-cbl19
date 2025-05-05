@@ -89,11 +89,7 @@ enrollments_2 <- data.frame(
 # Check it out
 enrollments_2
 ```
-```{r}
-# eval = FALSE: don't evaluate this chunk when knitting. it produces an error.
-students_2 |> 
-  left_join(enrollments_2)
-```
+
 ```{r}
 # Add student grades in each course
 students_3 <- data.frame(
